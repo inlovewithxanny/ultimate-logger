@@ -48,7 +48,7 @@ Perpetrator = {entry.user.id}
 
         given_role: disnake.Role
         for given_role in entry.after.roles:
-            changes += f"➕ {given_role.name} `[{given_role.id}]`\n"
+            changes += f"✅ {given_role.name} `[{given_role.id}]`\n"
 
         embed = disnake.Embed(
             colour=0x2B2D31,
