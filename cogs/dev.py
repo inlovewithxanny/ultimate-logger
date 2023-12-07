@@ -6,13 +6,15 @@ from ext.database.methods import *
 
 from aiohttp import ClientSession
 
+from config import DEV_GUILDS
+
 
 class DeveloperCommands(commands.Cog):
     def __init__(self, bot: commands.InteractionBot):
         super().__init__()
         self.bot = bot
 
-    @commands.slash_command(name="dev", description="[DEV] Команды разработчиков")
+    @commands.slash_command(name="dev", description="[DEV] Команды разработчиков", guild_ids=DEV_GUILDS)
     @is_guild_admin()
     async def dev(self, interaction: disnake.ApplicationCommandInteraction):
         pass
