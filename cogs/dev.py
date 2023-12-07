@@ -83,7 +83,5 @@ class DeveloperCommands(commands.Cog):
         )
 
 
-
-
 def setup(bot: commands.InteractionBot):
     bot.add_cog(cog=DeveloperCommands(bot=bot))
