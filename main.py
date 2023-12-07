@@ -15,8 +15,8 @@ async def on_ready():
     print("Ready")
     await bot.change_presence(
         activity=disnake.Activity(
-            name="currently in development",
-            type=disnake.ActivityType.playing
+            name="за порядком",
+            type=disnake.ActivityType.watching
         ),
         status=disnake.Status.idle
     )
