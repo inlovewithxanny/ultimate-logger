@@ -44,11 +44,11 @@ Perpetrator = {entry.user.id}
 
         taken_role: disnake.Role
         for taken_role in entry.before.roles:
-            changes += f"❌ {taken_role.name} `[{taken_role.id}]`\n"
+            changes += f"> **`-` {taken_role.name} `[{taken_role.id}]`**\n"
 
         given_role: disnake.Role
         for given_role in entry.after.roles:
-            changes += f"✅ {given_role.name} `[{given_role.id}]`\n"
+            changes += f"> **`+` {given_role.name} `[{given_role.id}]`**\n"
 
         embed = disnake.Embed(
             colour=0x2B2D31,
