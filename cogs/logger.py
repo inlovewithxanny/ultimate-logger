@@ -26,14 +26,14 @@ class Logger(commands.Cog):
             return
 
         if entry.user.bot:
-            description = f"Роли <@{entry.target.id}> были обновлены ботом <@{entry.user.id}>"
+            description = f"Роли <@{entry.target.id}> (`{entry.target.display_name}`) были обновлены ботом <@{entry.user.id}>"
             ids = f"""\
 ```js
 User = {entry.target.id}
 Perpetrator = {entry.user.id} [BOT]
 ```"""
         else:
-            description = f"Роли <@{entry.target.id}> были обновлены модератором <@{entry.user.id}>"
+            description = f"Роли <@{entry.target.id}> (`{entry.target.display_name}`) были обновлены модератором <@{entry.user.id}>"
             ids = f"""\
 ```js
 User = {entry.target.id}
