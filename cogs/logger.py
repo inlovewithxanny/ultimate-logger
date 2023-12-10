@@ -64,7 +64,7 @@ Perpetrator = {entry.user.id}
         embed.add_field(name="Изменения", value=changes, inline=False)
 
         if entry.reason:
-            embed.add_field(name="Причина", value=entry.reason, inline=False)
+            embed.add_field(name="Причина", value=f"> **{entry.reason}**", inline=False)
 
         embed.add_field(name="ID", value=ids, inline=False)
 
