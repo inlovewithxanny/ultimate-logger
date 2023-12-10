@@ -42,6 +42,8 @@ Perpetrator = {entry.user.id}
 
         changes = ""
 
+        colour = (entry.before.roles[0] if not len(entry.before.roles) == 0 else entry.after.roles[0]).colour
+
         taken_role: disnake.Role
         for taken_role in entry.before.roles:
             changes += f"> **`-` {taken_role.name} `[{taken_role.id}]`**\n"
@@ -51,7 +53,7 @@ Perpetrator = {entry.user.id}
             changes += f"> **`+` {given_role.name} `[{given_role.id}]`**\n"
 
         embed = disnake.Embed(
-            colour=0x2B2D31,
+            colour=colour,
             timestamp=datetime.now(),
             description=description,
         )
