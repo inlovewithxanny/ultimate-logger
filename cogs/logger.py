@@ -62,6 +62,10 @@ Perpetrator = {entry.user.id}
         embed.set_footer(text=str(entry.user), icon_url=entry.user.display_avatar.url)
 
         embed.add_field(name="Изменения", value=changes, inline=False)
+
+        if entry.reason:
+            embed.add_field(name="Причина", value=entry.reason, inline=False)
+
         embed.add_field(name="ID", value=ids, inline=False)
 
         async with ClientSession() as session:
