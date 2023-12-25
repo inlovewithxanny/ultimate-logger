@@ -71,7 +71,7 @@ Perpetrator = {entry.user.id}
         async with ClientSession() as session:
             webhook = disnake.Webhook.from_url(url=str(guild.roles_log_webhook), session=session)
             return await webhook.send(
-                username="Ultimate Logger | Роли",
+                username="Itsuki Momobami молодец | Роли",
                 avatar_url=self.bot.user.display_avatar.url,
                 embed=embed
             )
