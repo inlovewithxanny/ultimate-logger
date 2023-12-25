@@ -27,7 +27,7 @@ class Utils(commands.Cog):
             colour=message.author.roles[-1].colour,
             description=f"""\
 **Сообщение:** {message.jump_url}
-**Сообщение было отправлено:** <t:{int(message.created_at)}:f>
+**Сообщение было отправлено:** <t:{int(message.created_at.timestamp())}:f>
 **Автор:** <@{message.author.id}>"""
         )
 
