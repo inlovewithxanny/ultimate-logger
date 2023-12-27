@@ -80,7 +80,7 @@ class Utils(commands.Cog):
             return await gather(*tasks)
 
     @commands.slash_command(name="permissions", description="Посмотреть распределения прав доступа для канала", guild_ids=(355656045600964609,))
-    @commands.has_permissions(disnake.Permissions.manage_roles)
+    @commands.has_permissions(manage_roles=True)
     async def permissions_view(
             self,
             interaction: disnake.ApplicationCommandInteraction,
