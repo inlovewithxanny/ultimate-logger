@@ -39,7 +39,7 @@ class Utils(commands.Cog):
             embed=embed
         )
 
-    @commands.slash_command(name="clear", description="Очистить последние сообщения от пользователя", dm_permission=False, guild_ids=(797908325361516545,))
+    @commands.slash_command(name="clear", description="Очистить последние сообщения от пользователя", dm_permission=False, guild_ids=(355656045600964609,))
     # @commands.has_permissions(disnake.Permissions.manage_messages)
     @commands.is_owner()
     async def clear_messages(
