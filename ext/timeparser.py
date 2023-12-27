@@ -50,6 +50,6 @@ def parse_time(input_time: str, time_type: Literal["forwards", "backwards"]):
         if minutes > 0:
             time_str += f"{minutes} {choose_plural(minutes, units['m'])}"
 
-        return end_time, time_str.strip()
+        return end_time, time_delta, time_str.strip()
     else:
         raise ValueError("Неподдерживаемый тип времени. Поддерживаются типы: 's', 'm', 'h', 'd'.")
