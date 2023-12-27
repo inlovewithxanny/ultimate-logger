@@ -39,7 +39,7 @@ class Utils(commands.Cog):
             embed=embed
         )
 
-    @commands.slash_command(name="clear", description="Очистить последние сообщения от пользователя", dm_permission=False, guild_ids=(355656045600964609,))
+    @commands.slash_command(name="clear", description="Очистить последние сообщения от пользователя", guild_ids=(355656045600964609,))
     # @commands.has_permissions(disnake.Permissions.manage_messages)
     @commands.is_owner()
     async def clear_messages(
@@ -79,7 +79,7 @@ class Utils(commands.Cog):
 
             return await gather(*tasks)
 
-    @commands.slash_command(name="permissions", description="Посмотреть распределения прав доступа для канала", dm_permission=False, guild_ids=(355656045600964609,))
+    @commands.slash_command(name="permissions", description="Посмотреть распределения прав доступа для канала", guild_ids=(355656045600964609,))
     @commands.has_guild_permissions(disnake.Permissions.manage_roles)
     async def permissions_view(
             self,
