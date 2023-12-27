@@ -1,7 +1,8 @@
 from datetime import datetime, timedelta
+from typing import Literal
 
 
-def parse_time(input_time: str):
+def parse_time(input_time: str, time_type: Literal["forwards", "backwards"]):
     units = {
         "s": ("секунда", "секунды", "секунд"),
         "m": ("минута", "минуты", "минут"),
@@ -30,7 +31,10 @@ def parse_time(input_time: str):
         elif unit == "d":
              time_delta = timedelta(days=number)
 
-        end_time = datetime.now() + time_delta
+        if time_type == "forwards":
+            end_time = datetime.now() + time_delta
+        elif time_type == "backwards":
+            end_time = datetime.now() - time_delta
 
         time_str = ""
         if time_delta.days > 0:
