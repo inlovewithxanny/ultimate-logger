@@ -79,6 +79,20 @@ class Utils(commands.Cog):
 
             return await gather(*tasks)
 
+    @commands.slash_command(name="permissions", description="Посмотреть распределения прав доступа для канала", dm_permission=False, guild_ids=(355656045600964609,))
+    @commands.has_guild_permissions(disnake.Permissions.manage_roles)
+    async def permissions_view(
+            self,
+            interaction: disnake.ApplicationCommandInteraction,
+            channel: disnake.abc.GuildChannel = commands.Param(name="channel", description="Канал")
+    ):
+        await interaction.response.defer(ephemeral=True)
+
+        print(channel.overwrites)
+
+        return await interaction.edit_original_response(
+            content="Check console"
+        )
 
 
 def setup(bot: commands.InteractionBot):
