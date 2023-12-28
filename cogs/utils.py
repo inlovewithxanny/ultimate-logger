@@ -5,6 +5,9 @@ from ext.timeparser import parse_time
 from datetime import timedelta
 from asyncio import gather
 
+import os
+import aiofiles
+from random import randint
 
 class Utils(commands.Cog):
     def __init__(self, bot: commands.InteractionBot):
@@ -88,11 +91,90 @@ class Utils(commands.Cog):
     ):
         await interaction.response.defer(ephemeral=True)
 
-        print(channel.overwrites)
+        file_id = randint(1000000, 999999999)
 
-        return await interaction.edit_original_response(
-            content="Check console"
+        async with aiofiles.open(file=f"./tmp/permissions_overwrites_{file_id}.txt", mode="w", encoding="utf-8") as file:
+            for k, v in channel.overwrites.items():
+                if isinstance(k, disnake.Role):
+                    await file.write(f"Переопределения прав для роли \"{k.name}\" ({k.id})\n\n")
+                    await file.write(f"""\
+Добавлять реакции: {v.add_reactions}
+Прикреплять файлы: {v.attach_files}
+Подключаться: {v.connect}
+Создавать приглашения: {v.create_instant_invite}
+Создавать приватные ветки: {v.create_private_threads}
+Создавать публичные ветки: {v.create_public_threads}
+Вставлять ссылки: {v.embed_links}
+Использовать внешние эмодзи: {v.external_emojis}
+Использовать внешние стикеры: {v.external_stickers}
+Управлять каналом: {v.manage_channels}
+Управлять сообщениями: {v.manage_messages}
+Управлять правами: {v.manage_permissions}
+Управлять ветками: {v.manage_threads}
+Управлять вебхуками: {v.manage_webhooks}
+Упоминать @everyone, @here и всех ролей: {v.mention_everyone}
+Перемещать участников: {v.move_members}
+Отключать участникам микрофон: {v.mute_members}
+Приоритет в голосовом канале: {v.priority_speaker}
+Читать историю сообщений: {v.read_message_history}
+Читать сообщения: {v.read_messages}
+Запрос на выступление (трибуна): {v.request_to_speak}
+Отправлять сообщения: {v.send_messages}
+Отправлять сообщения в ветках: {v.send_messages_in_threads}
+Отправлять tts сообщения: {v.send_tts_messages}
+Отправлять голосовые сообщения: {v.send_voice_messages}
+Говорить: {v.speak}
+Начинать активности: {v.start_embedded_activities}
+Использовать внешние звуки: {v.use_external_sounds}
+Использовать команды приложений: {v.use_application_commands}
+Использовать звуковую панель: {v.use_soundboard}
+Использовать активацию по голосу: {v.use_voice_activation}
+Просматривать канал: {v.view_channel}\n\n""")
+
+                elif isinstance(k, disnake.Member):
+                    await file.write(f"Переопределения прав для пользователя \"{k.display_name}\" ({k.id})\n\n")
+                    await file.write(f"""\
+Добавлять реакции: {v.add_reactions}
+Прикреплять файлы: {v.attach_files}
+Подключаться: {v.connect}
+Создавать приглашения: {v.create_instant_invite}
+Создавать приватные ветки: {v.create_private_threads}
+Создавать публичные ветки: {v.create_public_threads}
+Вставлять ссылки: {v.embed_links}
+Использовать внешние эмодзи: {v.external_emojis}
+Использовать внешние стикеры: {v.external_stickers}
+Управлять каналом: {v.manage_channels}
+Управлять сообщениями: {v.manage_messages}
+Управлять правами: {v.manage_permissions}
+Управлять ветками: {v.manage_threads}
+Управлять вебхуками: {v.manage_webhooks}
+Упоминать @everyone, @here и всех ролей: {v.mention_everyone}
+Перемещать участников: {v.move_members}
+Отключать участникам микрофон: {v.mute_members}
+Приоритет в голосовом канале: {v.priority_speaker}
+Читать историю сообщений: {v.read_message_history}
+Читать сообщения: {v.read_messages}
+Запрос на выступление (трибуна): {v.request_to_speak}
+Отправлять сообщения: {v.send_messages}
+Отправлять сообщения в ветках: {v.send_messages_in_threads}
+Отправлять tts сообщения: {v.send_tts_messages}
+Отправлять голосовые сообщения: {v.send_voice_messages}
+Говорить: {v.speak}
+Начинать активности: {v.start_embedded_activities}
+Использовать внешние звуки: {v.use_external_sounds}
+Использовать команды приложений: {v.use_application_commands}
+Использовать звуковую панель: {v.use_soundboard}
+Использовать активацию по голосу: {v.use_voice_activation}
+Просматривать канал: {v.view_channel}\n\n""")
+
+        _file = disnake.File(fp=f"./tmp/permissions_overwrites_{file_id}.txt", filename="permissions.txt")
+
+        await interaction.edit_original_response(
+            content=f"Список распределений прав для канала {channel.mention}",
+            file=_file
         )
+
+        os.remove(f"./tmp/permissions_overwrites_{file_id}.txt")
 
 
 def setup(bot: commands.InteractionBot):
